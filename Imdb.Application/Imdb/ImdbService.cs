@@ -14,7 +14,6 @@ namespace Imdb.Application.Imdb
     public class ImdbService : IImdbService
     {
         private readonly ImdbApiConfiguration _configration;
-
         public ImdbService(IOptions<ImdbApiConfiguration> configuration)
         {
             _configration = configuration.Value;

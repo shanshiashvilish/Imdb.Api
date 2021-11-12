@@ -37,6 +37,7 @@ namespace Imdb.Api
             services.AddScoped<IInitializer, AutoMigrateInitializer>();
 
             services.Configure<ImdbApiConfiguration>(Configuration.GetSection(nameof(ImdbApiConfiguration)));
+            services.Configure<NotifyUserToWatchFilmsConfiguration>(Configuration.GetSection(nameof(NotifyUserToWatchFilmsConfiguration)));
 
             services.AddHostedService<NotifyUsersToWatchFilmsBackgroundJob>();
             services.AddSingleton<NotifyUsersToWatchFilmsWitness>();

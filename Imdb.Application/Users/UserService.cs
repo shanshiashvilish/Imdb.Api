@@ -1,5 +1,4 @@
-﻿using Imdb.Core.Imdb;
-using Imdb.Core.Users;
+﻿using Imdb.Core.Users;
 using Imdb.Core.WatchLists;
 using System.Threading.Tasks;
 
@@ -20,6 +19,7 @@ namespace Imdb.Application.Users
             {
                 Films = new System.Collections.Generic.List<Core.Films.Film>(),
             };
+
             User userToAdd = new()
             {
                 UserName = userName,

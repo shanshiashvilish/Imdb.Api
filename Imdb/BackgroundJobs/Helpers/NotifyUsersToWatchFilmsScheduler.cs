@@ -1,25 +1,26 @@
-﻿using System;
+﻿using Imdb.Application.Options;
+using System;
 
 namespace Imdb.Api.BackgroundJobs.Helpers
 {
     public class NotifyUsersToWatchFilmsScheduler
     {
-        public static bool IsTimeToStatJob(DateTime dateOfLastExecution)
+        public static bool IsTimeToStatJob(DateTime dateOfLastExecution, NotifyUserToWatchFilmsConfiguration configuration)
         {
             bool result = false;
 
             var currentDate = DateTime.Now;
-            var timeToStart = new DateTime(currentDate.Year, currentDate.Month, currentDate.Day, 19, 30, 0);
 
-            if (currentDate.Day == 1 || currentDate.Day == 15
-                && currentDate.Day != dateOfLastExecution.Day
-               || dateOfLastExecution == DateTime.MinValue)
+            if((currentDate.Day == configuration.DayOfMonthForFirstRun || currentDate.Day == configuration.DayOfMonthForSecondRun) 
+                && (currentDate.Day != dateOfLastExecution.Day || dateOfLastExecution == DateTime.MinValue))
             {
-                var some = (timeToStart - currentDate).TotalMinutes;
+                var timeToStart = new DateTime(currentDate.Year, currentDate.Month, currentDate.Day, configuration.StartHour, configuration.StartMinute, 0);
+                var minutes = (timeToStart - currentDate).TotalMinutes;
 
-                if (some <= 0)
+                if (minutes <= 0)
                     result = true;
             }
+
             return result;
         }
     }
