@@ -1,4 +1,5 @@
 using Imdb.Api.BackgroundJobs;
+using Imdb.Api.BackgroundJobs.Helpers;
 using Imdb.Api.Initializers;
 using Imdb.Application.Options;
 using Imdb.Infrastructure.Configuration.EmailServiceConfiguration;
@@ -33,10 +34,13 @@ namespace Imdb.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ImdbDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Default")));
-            services.Configure<ImdbApiConfiguration>(Configuration.GetSection(nameof(ImdbApiConfiguration)));
-            //services.AddHostedService<NotifyUsersToWatchFilmsBackgroundJob>();
             services.AddScoped<IInitializer, AutoMigrateInitializer>();
-            
+
+            services.Configure<ImdbApiConfiguration>(Configuration.GetSection(nameof(ImdbApiConfiguration)));
+
+            services.AddHostedService<NotifyUsersToWatchFilmsBackgroundJob>();
+            services.AddSingleton<NotifyUsersToWatchFilmsWitness>();
+
             services.AddUserServices();
             services.AddImdbServices();
             services.AddFilmServices();

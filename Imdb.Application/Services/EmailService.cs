@@ -15,7 +15,6 @@ namespace Imdb.Infrastructure.Services.Email
             message.Body = body;
 
             SmtpClient client = new("smtp.office365.com", 587);
-
             client.Credentials = new NetworkCredential("user@mail.com", "Password");
             client.DeliveryMethod = SmtpDeliveryMethod.Network;
             client.EnableSsl = true;

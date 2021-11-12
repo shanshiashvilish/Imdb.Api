@@ -8,5 +8,6 @@ namespace Imdb.Core.WatchLists
         Task SaveChangesAsync();
         User GetUserByWatchListId(int watchListId);
         Task AddWatchListAsync(int userId);
+        Task NotifyUsersToWatchFilms();
     }
 }
