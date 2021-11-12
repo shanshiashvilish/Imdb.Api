@@ -14,7 +14,7 @@ namespace Imdb.Api.BackgroundJobs
     {
         private readonly IServiceScopeFactory _scopeFactory;
         private readonly ILogger<NotifyUsersToWatchFilmsBackgroundJob> _logger;
-        private NotifyUsersToWatchFilmsWitness _witness;
+        private readonly NotifyUsersToWatchFilmsWitness _witness;
         private readonly NotifyUserToWatchFilmsConfiguration _configuration;
 
         public NotifyUsersToWatchFilmsBackgroundJob(IServiceScopeFactory scopeFactory, ILogger<NotifyUsersToWatchFilmsBackgroundJob> logger, NotifyUsersToWatchFilmsWitness witness, NotifyUserToWatchFilmsConfiguration configuration)

@@ -41,6 +41,7 @@ namespace Imdb.Api
 
             services.AddHostedService<NotifyUsersToWatchFilmsBackgroundJob>();
             services.AddSingleton<NotifyUsersToWatchFilmsWitness>();
+            services.AddSingleton<NotifyUserToWatchFilmsConfiguration>();
 
             services.AddUserServices();
             services.AddImdbServices();
